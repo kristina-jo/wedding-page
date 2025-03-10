@@ -145,8 +145,20 @@
 	}
 	document.addEventListener('DOMContentLoaded', function () {
 		document.getElementById('fillForm').addEventListener('click', openForm);
-	});
 
+		var container = document.getElementById('chevron-container');
+
+		function checkScroll() {
+			if (window.scrollY > 0) {
+				container.classList.add('hidden');
+			} else {
+				container.classList.remove('hidden');
+			}
+		}
+
+		window.addEventListener('scroll', checkScroll);
+		checkScroll();
+	});
 
 
 	$(function () {
