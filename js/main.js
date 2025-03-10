@@ -1,48 +1,51 @@
-;(function () {
-	
+;
+(function () {
+
 	'use strict';
 
 
-	var contentWayPoint = function() {
+	var contentWayPoint = function () {
 		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
+		$('.animate-box').waypoint(function (direction) {
 
-			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
+			if (direction === 'down' && !$(this.element).hasClass('animated-fast')) {
+
 				i++;
 
 				$(this.element).addClass('item-animate');
-				setTimeout(function(){
+				setTimeout(function () {
 
-					$('body .animate-box.item-animate').each(function(k){
+					$('body .animate-box.item-animate').each(function (k) {
 						var el = $(this);
-						setTimeout( function () {
+						setTimeout(function () {
 							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
+							if (effect === 'fadeIn') {
 								el.addClass('fadeIn animated-fast');
-							} else if ( effect === 'fadeInLeft') {
+							} else if (effect === 'fadeInLeft') {
 								el.addClass('fadeInLeft animated-fast');
-							} else if ( effect === 'fadeInRight') {
+							} else if (effect === 'fadeInRight') {
 								el.addClass('fadeInRight animated-fast');
 							} else {
 								el.addClass('fadeInUp animated-fast');
 							}
 
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						}, k * 200, 'easeInOutExpo');
 					});
-					
+
 				}, 100);
-				
+
 			}
 
-		} , { offset: '85%' } );
+		}, {
+			offset: '85%'
+		});
 	};
 
 
-	var dropdown = function() {
+	var dropdown = function () {
 
-		$('.has-dropdown').mouseenter(function(){
+		$('.has-dropdown').mouseenter(function () {
 
 			var $this = $(this);
 			$this
@@ -50,7 +53,7 @@
 				.css('display', 'block')
 				.addClass('animated-fast fadeInUpMenu');
 
-		}).mouseleave(function(){
+		}).mouseleave(function () {
 			var $this = $(this);
 
 			$this
@@ -62,7 +65,7 @@
 	};
 
 
-	var testimonialCarousel = function(){
+	var testimonialCarousel = function () {
 		var owl = $('.owl-carousel-fullwidth');
 		owl.owlCarousel({
 			items: 1,
@@ -77,20 +80,20 @@
 	};
 
 
-	var goToTop = function() {
+	var goToTop = function () {
 
-		$('.js-gotop').on('click', function(event){
-			
+		$('.js-gotop').on('click', function (event) {
+
 			event.preventDefault();
 
 			$('html, body').animate({
 				scrollTop: $('html').offset().top
 			}, 500, 'easeInOutExpo');
-			
+
 			return false;
 		});
 
-		$(window).scroll(function(){
+		$(window).scroll(function () {
 
 			var $win = $(window);
 			if ($win.scrollTop() > 200) {
@@ -100,42 +103,53 @@
 			}
 
 		});
-	
+
 	};
 
 
 	// Loading page
-	var loaderPage = function() {
+	var loaderPage = function () {
 		$(".fh5co-loader").fadeOut("slow");
 	};
 
-	var counter = function() {
+	var counter = function () {
 		$('.js-counter').countTo({
-			 formatter: function (value, options) {
-	      return value.toFixed(options.decimals);
-	    },
+			formatter: function (value, options) {
+				return value.toFixed(options.decimals);
+			},
 		});
 	};
 
-	var counterWayPoint = function() {
-		if ($('#fh5co-counter').length > 0 ) {
-			$('#fh5co-counter').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
+	var counterWayPoint = function () {
+		if ($('#fh5co-counter').length > 0) {
+			$('#fh5co-counter').waypoint(function (direction) {
+
+				if (direction === 'down' && !$(this.element).hasClass('animated')) {
+					setTimeout(counter, 400);
 					$(this.element).addClass('animated');
 				}
-			} , { offset: '90%' } );
+			}, {
+				offset: '90%'
+			});
 		}
 	};
 
 	// Parallax
-	var parallax = function() {
+	var parallax = function () {
 		$(window).stellar();
 	};
 
-	
-	$(function(){
+	function openForm() {
+		window.open('https://forms.office.com/e/7TBv7QL17d', '_blank');
+
+	}
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('fillForm').addEventListener('click', openForm);
+	});
+
+
+
+	$(function () {
 		parallax();
 		contentWayPoint();
 		dropdown();
